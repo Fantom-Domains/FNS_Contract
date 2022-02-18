@@ -38,7 +38,7 @@ async function main(a) {
     console.log({
       registryAddress,registrarAddress, wrapperAddress, resolverAddress,firstAddress, name
     })
-    const EnsRegistry = await (await ethers.getContractFactory("ENSRegistry")).attach(registryAddress)
+    const EnsRegistry = await (await ethers.getContractFactory("FNSRegistry")).attach(registryAddress)
     const BaseRegistrar = await (await ethers.getContractFactory("BaseRegistrarImplementation")).attach(registrarAddress)
     const NameWrapper = await (await ethers.getContractFactory("NameWrapper")).attach(wrapperAddress)
     const Resolver = await (await ethers.getContractFactory("PublicResolver")).attach(resolverAddress)

@@ -11,14 +11,14 @@ async function main() {
   console.log('labelhash("addr")',labelhash("addr"));
   console.log('namehash("ftm")',namehash.hash("ftm"));
   console.log('namehash("eth")',namehash.hash("eth"));
-  /*const ENSRegistry = await ethers.getContractFactory("ENSRegistry")
+  /*const ENSRegistry = await ethers.getContractFactory("FNSRegistry")
   const FIFSRegistrar = await ethers.getContractFactory("FIFSRegistrar")
   const ReverseRegistrar = await ethers.getContractFactory("ReverseRegistrar")
   const PublicResolver = await ethers.getContractFactory("PublicResolver")
   const signers = await ethers.getSigners();
   const accounts = signers.map(s => s.address)
 
-  const ens = await ENSRegistry.deploy()
+  const ens = await FNSRegistry.deploy()
   await ens.deployed()
   const resolver = await PublicResolver.deploy(ens.address, ZERO_ADDRESS);
   await resolver.deployed()
