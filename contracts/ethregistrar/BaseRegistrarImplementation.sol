@@ -2,11 +2,14 @@ pragma solidity >=0.8.4;
 
 import "../registry/FNS.sol";
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import "@openzeppelin/contracts/utils/Strings.sol";
 
 import "./BaseRegistrar.sol";
 contract BaseRegistrarImplementation is ERC721, BaseRegistrar  {
     // A map of expiry times
     mapping(uint256=>uint) expiries;
+
+    string _baseTokenURI;
 
     bytes4 constant private INTERFACE_META_ID = bytes4(keccak256("supportsInterface(bytes4)"));
     bytes4 constant private ERC721_ID = bytes4(
@@ -36,7 +39,7 @@ contract BaseRegistrarImplementation is ERC721, BaseRegistrar  {
         return (spender == owner || getApproved(tokenId) == spender || isApprovedForAll(owner, spender));
     }
 
-    constructor(FNS _fns, bytes32 _baseNode) ERC721("","") {
+    constructor(FNS _fns, bytes32 _baseNode) ERC721("Fantom Name Service","FNS") {
         fns = _fns;
         baseNode = _baseNode;
     }
@@ -146,9 +149,27 @@ contract BaseRegistrarImplementation is ERC721, BaseRegistrar  {
         fns.setSubnodeOwner(baseNode, bytes32(id), owner);
     }
 
+    function _baseURI() internal view override returns (string memory) {
+        return _baseTokenURI;
+    }
+
+    function tokenURI(uint256 id) public view override returns (string memory) {
+        return string(
+                abi.encodePacked(
+                    _baseTokenURI,
+                    "/",
+                    Strings.toString(id))
+        );
+    }
+
+    function setBaseURI(string memory baseURI) public onlyOwner {
+        _baseTokenURI = baseURI;
+    }
+
     function supportsInterface(bytes4 interfaceID) public override(ERC721, IERC165) view returns (bool) {
         return interfaceID == INTERFACE_META_ID ||
                interfaceID == ERC721_ID ||
-               interfaceID == RECLAIM_ID;
+               interfaceID == RECLAIM_ID ||
+               super.supportsInterface(interfaceID);
     }
 }

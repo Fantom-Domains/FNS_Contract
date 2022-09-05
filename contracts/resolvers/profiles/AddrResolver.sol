@@ -4,7 +4,7 @@ import "../ResolverBase.sol";
 abstract contract AddrResolver is ResolverBase {
     bytes4 constant private ADDR_INTERFACE_ID = 0x3b3b57de;
     bytes4 constant private ADDRESS_INTERFACE_ID = 0xf1cb7e06;
-    uint constant private COIN_TYPE_ETH = 60;
+    uint constant private COIN_TYPE_FTM = 1007;
 
     event AddrChanged(bytes32 indexed node, address a);
     event AddressChanged(bytes32 indexed node, uint coinType, bytes newAddress);
@@ -18,7 +18,7 @@ abstract contract AddrResolver is ResolverBase {
      * @param a The address to set.
      */
     function setAddr(bytes32 node, address a) external authorised(node) {
-        setAddr(node, COIN_TYPE_ETH, addressToBytes(a));
+        setAddr(node, COIN_TYPE_FTM, addressToBytes(a));
     }
 
     /**
@@ -27,7 +27,7 @@ abstract contract AddrResolver is ResolverBase {
      * @return The associated address.
      */
     function addr(bytes32 node) public view returns (address payable) {
-        bytes memory a = addr(node, COIN_TYPE_ETH);
+        bytes memory a = addr(node, COIN_TYPE_FTM);
         if(a.length == 0) {
             return payable(0);
         }
@@ -36,7 +36,7 @@ abstract contract AddrResolver is ResolverBase {
 
     function setAddr(bytes32 node, uint coinType, bytes memory a) public authorised(node) {
         emit AddressChanged(node, coinType, a);
-        if(coinType == COIN_TYPE_ETH) {
+        if(coinType == COIN_TYPE_FTM) {
             emit AddrChanged(node, bytesToAddress(a));
         }
         _addresses[node][coinType] = a;
