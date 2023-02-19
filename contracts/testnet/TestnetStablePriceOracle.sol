@@ -43,7 +43,7 @@ interface AggregatorV3Interface {
 
 
 // StablePriceOracle sets a price in USD, based on an oracle.
-contract StablePriceOracle is Ownable, PriceOracle {
+contract TestnetStablePriceOracle is Ownable, PriceOracle {
     using SafeMath for *;
     using StringUtils for *;
 
