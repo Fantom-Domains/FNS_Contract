@@ -10,7 +10,7 @@ require("hardhat-deploy-ethers");
 // if this file is missing. dotenv will never modify any environment variables
 // that have already been set.
 // https://github.com/motdotla/dotenv
-require('dotenv').config({silent: true});
+require("dotenv").config({ silent: true });
 
 // This is a sample Hardhat task. To learn how to create your own go to
 // https://hardhat.org/guides/create-task.html
@@ -26,7 +26,7 @@ task("accounts", "Prints the list of accounts", async () => {
 // Go to https://hardhat.org/config/ to learn more
 
 real_accounts = undefined;
-if(process.env.DEPLOYER_KEY && process.env.OWNER_KEY) {
+if (process.env.DEPLOYER_KEY && process.env.OWNER_KEY) {
   real_accounts = [process.env.DEPLOYER_KEY, process.env.OWNER_KEY];
 }
 
@@ -34,7 +34,6 @@ if(process.env.DEPLOYER_KEY && process.env.OWNER_KEY) {
  * @type import('hardhat/config').HardhatUserConfig
  */
 module.exports = {
-
   networks: {
     hardhat: {
       // Required for real DNS record tests
@@ -52,9 +51,8 @@ module.exports = {
       tags: ["test", "legacy", "use_root"],
       chainId: 3,
       accounts: real_accounts,
-	  gas: 2100000,
-      gasPrice: 8000000000
-	  
+      gas: 2100000,
+      gasPrice: 8000000000,
     },
     mainnet: {
       url: `https://mainnet.infura.io/v3/${process.env.INFURA_ID}`,
@@ -62,31 +60,32 @@ module.exports = {
       chainId: 1,
       accounts: real_accounts,
     },
-	ftmtest: {
+    ftmtest: {
       url: `https://rpc.testnet.fantom.network/`,
       tags: ["test", "legacy", "use_root"],
       chainId: 4002,
-	  saveDeployments: true,
+      saveDeployments: true,
       accounts: real_accounts,
-	  gas: 2100000,
-      gasPrice: 80000000000
+      gas: 2100000,
+      gasPrice: 80000000000,
     },
-	fantom: {
+    fantom: {
       url: `https://rpc.ftm.tools`,
       chainId: 250,
-	  saveDeployments: true,
-      accounts: ['f1dd42d23a1e6875cf3b2ab2a18dd928d39a468b30678df7ac4be4abd0355a25'],
-	  gas: 3000000,
-      gasPrice: 250000000000
-    }
+      saveDeployments: true,
+      accounts: [
+        "f1dd42d23a1e6875cf3b2ab2a18dd928d39a468b30678df7ac4be4abd0355a25",
+      ],
+      gas: 3000000,
+      gasPrice: 250000000000,
+    },
   },
-  mocha: {
-  },
+  mocha: {},
   abiExporter: {
-    path: './build/contracts',
+    path: "./build/contracts",
     clear: true,
     flat: true,
-    spacing: 2
+    spacing: 2,
   },
   solidity: {
     compilers: [
@@ -96,10 +95,10 @@ module.exports = {
           optimizer: {
             enabled: true,
             runs: 10000,
-          }
-        }
-      }
-    ]
+          },
+        },
+      },
+    ],
   },
   namedAccounts: {
     deployer: {
@@ -110,4 +109,3 @@ module.exports = {
     },
   },
 };
-
