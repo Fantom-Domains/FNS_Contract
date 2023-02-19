@@ -96,10 +96,12 @@ async function main() {
   await delay(3000);
 
   //Controller
-  const priceoracle = await PriceOracle.deploy(
-    "0xf4766552d15ae4d256ad41b6cf2933482b0680dc",
-    ["100000000000000", "10000000000000", "1000000000000", "100000000000"]
-  );
+  const priceoracle = await PriceOracle.deploy([
+    "100000000000000",
+    "10000000000000",
+    "1000000000000",
+    "100000000000",
+  ]);
   await priceoracle.deployed();
   console.log(`address oracle (tx:${priceoracle.address})...`);
   await delay(3000);

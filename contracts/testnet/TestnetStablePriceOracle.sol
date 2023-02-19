@@ -51,7 +51,6 @@ contract TestnetStablePriceOracle is Ownable, PriceOracle {
     uint[] public rentPrices;
 
     // Oracle address
-    AggregatorV3Interface public usdOracle;
 
     event OracleChanged(address oracle);
 
@@ -60,8 +59,7 @@ contract TestnetStablePriceOracle is Ownable, PriceOracle {
     bytes4 constant private INTERFACE_META_ID = bytes4(keccak256("supportsInterface(bytes4)"));
     bytes4 constant private ORACLE_ID = bytes4(keccak256("price(string,uint256,uint256)") ^ keccak256("premium(string,uint256,uint256)"));
 
-    constructor(AggregatorV3Interface _usdOracle, uint[] memory _rentPrices) public {
-        usdOracle = _usdOracle;
+    constructor(uint[] memory _rentPrices) public {
         setPrices(_rentPrices);
     }
 
