@@ -161,7 +161,7 @@ FNS does not enforce the accuracy of reverse records - for instance, anyone may 
 Most libraries provide functionality for doing reverse resolution:
 
 - **ethersjs**
-```
+```javascript
 var address = '0x1234...';
 var name = await provider.lookupAddress(address);
 // ethers.js automatically checks that the forward resolution matches.
