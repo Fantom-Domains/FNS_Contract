@@ -31,9 +31,9 @@ console.log("fnsdao.ftm address: ", deployerAddress);
 
 ### Resolution without a library is a three step process:
 
-1. Normalise and hash the name - see [name processing](../contract-api-reference/name-processing.md) for details.
+1. Normalise and hash the name - see [name processing](https://docs.ens.domains/contract-api-reference/name-processing) for details.
 2. Call `resolver()` on the FNS registry, passing in the output of step 1. This returns the address of the resolver responsible for the name.
-3. Using the [resolver interface](https://github.com/ensdomains/resolvers/blob/master/contracts/Resolver.sol), call `addr()` on the resolver address returned in step 2, passing in the hashed name calculated in step 1.
+3. Using the [resolver interface](https://github.com/Fantom-Domains/FNS_Contract/blob/master/contracts/resolvers/Resolver.sol), call `addr()` on the resolver address returned in step 2, passing in the hashed name calculated in step 1.
 
 **Resolution support for the addresses of other blockchains** is implemented with an additional overload on `addr()`. To resolve a non-Ethereum address, supply both the namehash and the [SLIP44](https://github.com/satoshilabs/slips/blob/master/slip-0044.md) chain ID of the cryptocurrency whose address you want to resolve. For example, to resolve a Bitcoin address, you would call `addr(hash, 0)`. Note that the returned address will be in binary representation, and so will need decoding to a text-format address; for details, see [EIP 2304](https://eips.ethereum.org/EIPS/eip-2304).
 
