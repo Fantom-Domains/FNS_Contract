@@ -316,7 +316,7 @@ async function main() {
   const registry = await ethers.getContractAt("FNSRegistry", ens.address);
   await registry.setSubnodeOwner(
     ZERO_HASH,
-    labelhash("futbol"),
+    labelhash("dnsregistrar"),
     dnsregistrar.address
   );
   console.log("Set Tld", registry.address);
