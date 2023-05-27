@@ -111,13 +111,11 @@ For example
 ```javascript
 {
   domains(where:{name:"fnsdao.ftm"}) {
+    id
     name
     resolver{
       texts
       coinTypes
-	  addr {
-	    id
-  	  }
     }
   }
 }
@@ -130,17 +128,13 @@ will return the following result
   "data": {
     "domains": [
       {
+        "id": "0x2fd702871d11050333f71cec49c6e42d5e5ff4a872ca625f1f2694638a29f972",
         "name": "fnsdao.ftm",
         "resolver": {
+          "texts": null,
           "coinTypes": [
             1007
-          ],
-          "texts": [
-            "url"
-          ],
-		  addr {
-			"id": "0xee6c4522aab0003e8d14cd40a6af439055fd2577951148c14b6cea9a53475835",
-		  }
+          ]
         }
       }
     ]
