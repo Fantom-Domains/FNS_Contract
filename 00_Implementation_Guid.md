@@ -133,7 +133,7 @@ will return the following result
         "name": "fnsdao.ftm",
         "resolver": {
           "coinTypes": [
-            60
+            1007
           ],
           "texts": [
             "url"
